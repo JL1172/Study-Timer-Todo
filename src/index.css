@@ -159,13 +159,10 @@ form>button {
 #main {
   position: relative;
 }
-#message {
-  font-size: 5rem;
-}
+
 #one, #three, #two {
   position: absolute;
   top : 3rem;
-  opacity: 1;
   box-shadow: 0 0 1em rgb(255, 167, 4);
 }
 #one {
@@ -213,4 +210,21 @@ form>button {
 		transform: translate(-30rem, 40rem);
 	}
 
+}
+
+#message {
+  font-size: 5rem;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards ;
+}
+
+@keyframes fadeIn {
+  0% {
+    outline: 2px solid white;
+    border-radius: 10rem;
+  }
+  100% {
+    opacity: 1;
+    outline-offset: 100rem;
+  }
 }
