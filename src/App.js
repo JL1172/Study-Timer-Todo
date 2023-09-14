@@ -6,7 +6,7 @@ function App() {
   const [seconds, setSeconds] = useState(60);
   const [minutes, setMinutes] = useState("");
   const [interim, setInterim] = useState("");
-  const [completed, setCompleted] = useState(true);
+  const [completed, setCompleted] = useState(false);
   const change = (e) => {
     setMinutes(e.target.value);
     setInterim(e.target.value);
