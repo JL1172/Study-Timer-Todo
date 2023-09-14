@@ -79,3 +79,9 @@ form > button {
   padding: 1rem;
   border-radius: 10px;
 }
+#add {
+  width: 15rem;
+  height : 2rem;
+  padding: 0;
+  padding-left: 1rem;
+}
