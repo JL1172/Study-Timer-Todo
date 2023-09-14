@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getTodos, postTodo, putTodo } from "./actions/preferenceActions";
+import { getTodos, postTodo, putTodo, secondPutTodo } from "./actions/preferenceActions";
 
 export default function TodoForm() {
     const [todos, setTodos] = useState([]);
@@ -31,9 +31,12 @@ export default function TodoForm() {
         })
     }
     const undoCompletion = todo => {
-        putTodo(todo).then(() => {
+        secondPutTodo(todo).then(() => {
             fetchData();
         })
+    }
+    const deleteTodo = todoId => {
+
     }
     return (
         <div id="todoContainer">
@@ -48,12 +51,14 @@ export default function TodoForm() {
                 {todos.map(n => {
                     return <div className="list" key={n.id}>
                         <span className="description">{n.description}</span>
-                        <button onClick={() => completeData(n)} className="completed">{n.completed === true ? "delete" : "complete"}
-                        </button >
-                        {n.completed ? 
-                        <span style = {{cursor : "pointer"}} onClick = {()=>undoCompletion(n)} className="material-symbols-outlined">
-                            undo
-                        </span> : ""}
+                        {n.completed ?
+                            <button onClick={() => deleteTodo(n.id)} className="completed">Delete</button > :
+                            <button onClick={() => completeData(n)} className="completed">Complete</button >
+                        }
+                        {n.completed ?
+                            <span style={{ cursor: "pointer", marginLeft: "1rem" }} onClick={() => undoCompletion(n)} className="material-symbols-outlined">
+                                undo
+                            </span> : ""}
                     </div>
                 })}
             </div>

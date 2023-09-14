@@ -18,3 +18,6 @@ export const secondPutTodo =(todo) => {
     const modded = {...todo, completed : false}
     return axios.put(`${baseUrl}/${todo.id}`,modded)
 }
+export const deleteTodo = (id) => {
+    return axios.delete(`${baseUrl}/${id}`)
+}
