@@ -1,23 +1,64 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import TodoForm from './TodoForm';
 
 function App() {
+  const [seconds, setSeconds] = useState(60);
+  const [minutes, setMinutes] = useState("");
+  const [interim, setInterim] = useState("");
+  const [override, setOverride] = useState(false);
+  const change = (e) => {
+    setMinutes(e.target.value);
+    setInterim(e.target.value);
+  }
+  const pamadora = () => {
+    setInterim("");
+    if (override) {
+      console.log("hello")
+    } else {
+      let countS = 0;
+      let countM = 0;
+      let initial = 0;
+
+      let constant1 = 60;
+      let constant2 = minutes - 1;
+      let intervalId = setInterval(() => {
+
+        if (initial === 0) {
+          setMinutes(minutes => minutes - 1)
+          initial++
+        }
+        if (constant1 === 0 && constant2 === 0) {
+          clearInterval(intervalId);
+        }
+        if (countS === 60) {
+          setMinutes((minutes) => minutes - 1)
+          countM++
+          setSeconds(seconds => seconds = 60)
+          countS = 0;
+          constant1 = 60;
+          constant2--
+        } else {
+          setSeconds(seconds => seconds - 1)
+          constant1--
+          countS++
+        }
+      }, 1000)
+    }
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div id="timerContainer">
+        <div>{minutes === 60 || minutes < 0 ? "00" : minutes.toString().padStart(2, "0")} : {seconds === 60 ? "00" : seconds.toString().padStart(2, "0")}</div>
+        <div id="form">
+          <form>
+            <button onClick={() => setOverride((minutes) => minutes = 0)}>reset</button>
+          </form>
+          <button onClick={pamadora}>start</button>
+          <input onChange={change} type="number" value={interim} />
+        </div>
+      </div>
+      <TodoForm />
     </div>
   );
 }

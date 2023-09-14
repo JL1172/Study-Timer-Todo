@@ -11,3 +11,71 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.App {
+  height : 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color : rgb(31, 25, 25);
+}
+#timerContainer {
+  display: flex;
+  font-size: 10rem;
+  flex-direction: column;
+
+}
+ div {
+  color : lightgray;
+}
+#form {
+  height : 20rem;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 3rem;
+}
+button, input {
+  margin-bottom: 2rem;
+  height: 3rem;
+  border: none;
+  box-shadow: 0 0 1em lightgray;
+  border-radius: 2rem;
+}
+button {
+  background-color: aquamarine;
+  color : gray;
+  font-size: 20px;
+  outline: 1px solid aquamarine;
+  transition: .1s ease-in-out;
+}
+ button:hover {
+ outline-offset: 6px;
+ transition: .1s ease-in-out;
+}
+button:active {
+  transition: .1s ease-in-out;
+  outline-width: 3px;
+  outline-offset: 20px;
+ }
+input:focus {
+  outline : none;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 20px;
+}
+form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form > button {
+  width: 100%;
+}
+#todoContainer {
+  background-color: rgb(61, 41, 41);
+  height : 25rem;
+  width: 20rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
