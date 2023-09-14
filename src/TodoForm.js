@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react"
-import { getTodos } from "./actions/preferenceActions";
+import { getTodos, postTodo } from "./actions/preferenceActions";
 
 export default function TodoForm() {
     const [todos,setTodos] = useState([]);
+    const [todoInQue,setTodoInQue] = useState(""); 
+
+    const change = e => {
+        e.preventDefault(); 
+        setTodoInQue(e.target.value)
+    }
 
     useEffect(()=> {
         fetchData(); 
@@ -10,8 +16,13 @@ export default function TodoForm() {
 
     const fetchData = () => {
         getTodos().then(res=> {
-            console.log(res.data);
             setTodos(res.data);  
+        })
+    }
+    const addData = () => {
+        postTodo(todoInQue).then(()=> {
+            fetchData();
+            setTodoInQue(""); 
         })
     }
 
@@ -20,8 +31,8 @@ export default function TodoForm() {
             <div id="container">
                 <h2>To-do List</h2>
                 <div id = "smaller">
-                <input id="add" type="text" />
-                <span className="material-symbols-outlined">
+                <input value = {todoInQue} onChange={change} id="add" type="text" />
+                <span onClick = {addData}className="material-symbols-outlined">
                     add_circle
                 </span>
                 </div>
