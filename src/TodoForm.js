@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getTodos, postTodo, putTodo, secondPutTodo } from "./actions/preferenceActions";
+import { deleteTodo, getTodos, postTodo, putTodo, secondPutTodo } from "./actions/preferenceActions";
 
 export default function TodoForm() {
     const [todos, setTodos] = useState([]);
@@ -35,8 +35,10 @@ export default function TodoForm() {
             fetchData();
         })
     }
-    const deleteTodo = todoId => {
-
+    const deleteCompleted = todoId => {
+        deleteTodo(todoId).then(()=> {
+            fetchData(); 
+        })
     }
     return (
         <div id="todoContainer">
@@ -52,7 +54,7 @@ export default function TodoForm() {
                     return <div className="list" key={n.id}>
                         <span className="description">{n.description}</span>
                         {n.completed ?
-                            <button onClick={() => deleteTodo(n.id)} className="completed">Delete</button > :
+                            <button onClick={() => deleteCompleted(n.id)} className="completed">Delete</button > :
                             <button onClick={() => completeData(n)} className="completed">Complete</button >
                         }
                         {n.completed ?
