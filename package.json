@@ -13,7 +13,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "server": "json-server ./src/data/data.json -p 3005",
+    "start" : "react-scripts start echo 'remember to run server' ",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
